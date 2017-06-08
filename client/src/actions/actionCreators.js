@@ -1,4 +1,5 @@
 const axios = require('axios');
+const apiBaseUrl = 'https://lote-app.herokuapp.com/api';
 
 export const increment = () => {
   return {
@@ -26,7 +27,7 @@ export const getLotes = (userId) => {
     var state = getState();
     dispatch(loadingChanged(true));
 
-    return axios.get(`http://localhost:3000/api/profiles/${userId}/lotes`)
+    return axios.get(`${apiBaseUrl}/profiles/${userId}/lotes`)
       .then(function (res) {
         dispatch(loadingChanged(false));
 
@@ -59,7 +60,7 @@ export const getContacts = (userId) => {
     var state = getState();
     dispatch(loadingChanged(true));
 
-    return axios.get(`http://localhost:3000/api/profiles/${userId}/contacts`)
+    return axios.get(`${apiBaseUrl}/profiles/${userId}/contacts`)
       .then(function (res) {
         dispatch(loadingChanged(false));
 
@@ -92,7 +93,7 @@ export const getProfileByEmail = (email) => {
     var state = getState();
     dispatch(loadingChanged(true));
 
-    return axios.get(`http://localhost:3000/api/profileByEmail/${email}`)
+    return axios.get(`${apiBaseUrl}/profileByEmail/${email}`)
       .then(function (res) {
         dispatch(loadingChanged(false));
 
