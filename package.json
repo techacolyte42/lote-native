@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "dotenv": "^4.0.0",
+    "native-base": "^2.1.4",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.2",
     "react-native-lock": "^0.6.0",
