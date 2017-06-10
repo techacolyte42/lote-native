@@ -24,8 +24,15 @@ const styles = StyleSheet.create({
   },
 });
 
-class NewLote extends Component {
-   static navigationOptions = {
+
+class NewLote extends React.Component {
+
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
+  static navigationOptions = {
     tabBarLabel: 'New Lote',
     tabBarIcon: () => (<Icon size={24} color="white" name="add-location" />)
   }
@@ -133,6 +140,37 @@ class NewLote extends Component {
   //   event.preventDefault();
   //   console.log(event);
   // }
+
+  watchID: ?number = null;
+
+  state = {
+    initialPosition: 'unknown',
+    lastPosition: 'unknown',
+  };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        this.setState({initialPosition});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        var lastPosition = JSON.stringify(position);
+        console.log ('lastPosition', lastPosition);
+        this.setState({lastPosition});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
+    );
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
 
   render() {
     const {lotecation, userLocation} = this.props;
