@@ -1241,6 +1241,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = loteNative;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1269,6 +1270,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = loteNative;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

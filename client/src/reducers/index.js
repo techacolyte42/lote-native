@@ -11,6 +11,7 @@ import userLocation from './user-location';
 import activePage from './activePage';
 import activeContact from './activeContact';
 import activeMessage from './activeMessage';
+import contactForm from './contactForm';
 
 const rootReducer = combineReducers({
   recipes,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   activePage,
   activeContact,
   activeMessage,
+  contactForm
 //   routing: routerReducer
 });
 

@@ -1,5 +1,6 @@
 const axios = require('axios');
-const apiBaseUrl = 'https://lote-app.herokuapp.com/api';
+import config from '../../../config/config.js';
+const apiBaseUrl = config.API_BASE_URL;
 
 export const increment = () => {
   return {
