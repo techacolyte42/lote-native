@@ -30,6 +30,7 @@ build/
 .idea
 .gradle
 local.properties
+api_keys.xml
 *.iml
 
 # node.js
