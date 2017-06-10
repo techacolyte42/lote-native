@@ -58,7 +58,6 @@
           android:theme="@style/Lock.Theme">
       </activity>
       <!--Auth0 Lock Passwordless End-->
-
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
