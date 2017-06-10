@@ -5,6 +5,7 @@ import { Header } from './common';
 import config from '../../../config/config.js';
 
 class Home extends React.Component {
+  
   static navigationOptions = {
     tabBarLabel: 'Home',
     tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)

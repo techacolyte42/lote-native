@@ -10,16 +10,19 @@ class Lotes extends React.Component {
   }
 
   render() {
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View>
-        <Header headerText='Lotes' />
-        <Text>Lote Message</Text>
-        <Text>Lote Message</Text>
-        <Text>Lote Message</Text>
-        <Text>Lote Message</Text>
-        <Text>Lote Message</Text>
-        <Text>Lote Message</Text>
+      
+      { this.props.activeContact.display ? this.props.activeContact.display : this.props.activeContact.email }
+          { !this.props.activeContact.email && 'No Contact Selected'}
+        // <Header headerText='Lotes' />
+        // <Text>Lote Message</Text>
+        // <Text>Lote Message</Text>
+        // <Text>Lote Message</Text>
+        // <Text>Lote Message</Text>
+        // <Text>Lote Message</Text>
+        // <Text>Lote Message</Text>
       </View>
     );
   }
