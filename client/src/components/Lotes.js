@@ -16,13 +16,6 @@ class Lotes extends React.Component {
       
       { this.props.activeContact.display ? this.props.activeContact.display : this.props.activeContact.email }
           { !this.props.activeContact.email && 'No Contact Selected'}
-        // <Header headerText='Lotes' />
-        // <Text>Lote Message</Text>
-        // <Text>Lote Message</Text>
-        // <Text>Lote Message</Text>
-        // <Text>Lote Message</Text>
-        // <Text>Lote Message</Text>
-        // <Text>Lote Message</Text>
       </View>
     );
   }

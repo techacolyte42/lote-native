@@ -13,7 +13,7 @@
 #import <React/RCTLog.h>
 #import <React/RCTRootView.h>
 
-#define TIMEOUT_SECONDS 600
+#define TIMEOUT_SECONDS 600000
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
 @interface loteNativeTests : XCTestCase
