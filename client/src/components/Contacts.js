@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text, ScrollView } from 'react-native';
 import { Container, Content, List, ListItem, Thumbnail, Body, Right, Left, Item, Input, Form, Button } from 'native-base';
 import { Field, reduxForm } from 'redux-form';
 import { Header } from './common';
 import config from '../../../config/config.js';
 
 const apiBaseUrl = config.API_BASE_URL;
+//header is not showing up
 
 class Contacts extends React.Component {
 
@@ -39,7 +40,7 @@ class Contacts extends React.Component {
   }
 
   handleSubmitContact (e) {
-
+    console.log('this has been clicked')
     e.preventDefault();
     console.log('expect my email', this.props.profile.id)
    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
@@ -62,7 +63,9 @@ class Contacts extends React.Component {
   render() {
     return (
       <Container>
-        <Header headerText='Contacts' />
+
+          <Header headerText='Contacts' />
+
         <Content>
           <List>
             { this.props.contacts.map( (contact)=>{
@@ -72,15 +75,19 @@ class Contacts extends React.Component {
             }) }
           </List>
         </Content>
-          <Content>
-            <Item regular>
-              <Input ref="email" onChangeText={ this.handleEmailInput } value={this.state.email} placeholder="contact"/>
-            </Item>
-            <Button block primary onPress={ this.handleSubmitContact }>
-            <Text>Submit</Text>
-            </Button>
-          </Content>     
+          
+        <Item regular>
+          <Input ref="email" onChangeText={ this.handleEmailInput } value={this.state.email} placeholder="Enter a contact"/>
+        </Item>
+
+        <View><Text></Text></View>
+
+        <Button block primary onPress={ this.handleSubmitContact }>
+          <Text>Submit</Text>
+        </Button>
+      
       </Container>
+      
     );
  }
 }
