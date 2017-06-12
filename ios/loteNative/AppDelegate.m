@@ -23,6 +23,7 @@
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
   [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
+//  [GMSServices provideAPIKey:@"AIzaSyDgogxI-cqcqLLCZzuEI4FZFKcQA-c36GM"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"loteNative"

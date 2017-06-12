@@ -119,17 +119,17 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   React:
-    :path: ../node_modules/react-native
+    :path: "../node_modules/react-native"
   react-native-google-maps:
-    :path: ../node_modules/react-native-maps/react-native-google-maps.podspec
+    :path: "../node_modules/react-native-maps/react-native-google-maps.podspec"
   react-native-maps:
-    :path: ../node_modules/react-native-maps/react-native-maps.podspec
+    :path: "../node_modules/react-native-maps/react-native-maps.podspec"
   RNBackgroundFetch:
-    :path: ../node_modules/react-native-background-fetch
+    :path: "../node_modules/react-native-background-fetch"
   RNBackgroundGeolocation:
-    :path: ../node_modules/react-native-background-geolocation
+    :path: "../node_modules/react-native-background-geolocation"
   Yoga:
-    :path: ../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
+    :path: "../node_modules/react-native/ReactCommon/yoga/Yoga.podspec"
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67

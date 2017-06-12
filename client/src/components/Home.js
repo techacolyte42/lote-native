@@ -23,7 +23,7 @@ class Home extends React.Component {
       }
       // Authentication worked!
       console.log('Logged in with Auth0!');
-      
+      console.log ('profile email', profile.email);
       this.props.getProfileByEmail(profile.email)
         .then((profile) => {
           console.log('RESULT', profile);
@@ -35,6 +35,7 @@ class Home extends React.Component {
           this.props.getContacts(user.id);
         })
         .catch(function (err) {
+          console.log ('were here');
           console.log (err);
         });
     }); 

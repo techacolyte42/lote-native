@@ -130,7 +130,7 @@ class NewLote extends Component {
     const {lotecation, userLocation} = this.props;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
+        <Select width={250} ref="SELECT1" defaultValue="Select a contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
           { this.props.contacts.map( (contact)=>{
                 return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
                   { contact.receiver.email }</Option>
