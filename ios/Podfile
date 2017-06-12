@@ -19,8 +19,8 @@ target 'loteNative' do
   ]
 
   pod 'GoogleMaps'
-  pod 'react-native-maps', path: '../node_modules/react-native-maps/'
-  pod 'react-native-google-maps', path: '../node_modules/react-native-maps'
+  pod 'react-native-maps', path: '../node_modules/react-native-maps/react-native-maps.podspec'
+  pod 'react-native-google-maps', path: '../node_modules/react-native-maps/react-native-google-maps.podspec'
   
   pod 'RNBackgroundGeolocation', :path => '../node_modules/react-native-background-geolocation'
   pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'

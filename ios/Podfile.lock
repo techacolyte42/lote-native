@@ -14,6 +14,12 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - CocoaLumberjack (3.2.0):
+    - CocoaLumberjack/Default (= 3.2.0)
+    - CocoaLumberjack/Extensions (= 3.2.0)
+  - CocoaLumberjack/Default (3.2.0)
+  - CocoaLumberjack/Extensions (3.2.0):
+    - CocoaLumberjack/Default
   - GoogleMaps (2.1.1):
     - GoogleMaps/Maps (= 2.1.1)
   - GoogleMaps/Base (2.1.1)
@@ -77,6 +83,11 @@ PODS:
     - React/Core
   - React/RCTWebSocket (0.44.2):
     - React/Core
+  - RNBackgroundFetch (2.0.6):
+    - React
+  - RNBackgroundGeolocation (2.8.1):
+    - CocoaLumberjack (~> 3.0)
+    - React
   - SimpleKeychain (0.8.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -89,8 +100,8 @@ DEPENDENCIES:
   - Lock/Safari
   - Lock/SMS
   - Lock/TouchID
-  - react-native-google-maps (from `../node_modules/react-native-maps`)
-  - react-native-maps (from `../node_modules/react-native-maps/`)
+  - react-native-google-maps (from `../node_modules/react-native-maps/react-native-google-maps.podspec`)
+  - react-native-maps (from `../node_modules/react-native-maps/react-native-maps.podspec`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
@@ -102,30 +113,39 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga/Yoga.podspec`)
 
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
   react-native-google-maps:
-    :path: ../node_modules/react-native-maps
+    :path: ../node_modules/react-native-maps/react-native-google-maps.podspec
   react-native-maps:
-    :path: ../node_modules/react-native-maps/
+    :path: ../node_modules/react-native-maps/react-native-maps.podspec
+  RNBackgroundFetch:
+    :path: ../node_modules/react-native-background-fetch
+  RNBackgroundGeolocation:
+    :path: ../node_modules/react-native-background-geolocation
   Yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaLumberjack: 9b4aed7073d242f29cc2f62068d995faf67f703a
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   Lock: 3414fed031b4044509697dd9b9da9208bc68ad26
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   React: 68b26ea7726bf0731e954db0187fd8b749ec2863
   react-native-google-maps: d0b8772eb76e1615ea32c73bc9d573360b8c0817
   react-native-maps: fe2e4680b4d3fcfd84d636ccedd470fe358d55e1
+  RNBackgroundFetch: 7df90ae3925ba4ceacd112bb9e7b0d8e2f70a116
+  RNBackgroundGeolocation: 38a57f5e881cd3c030dd6e1dc378228478e6f0c0
   SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Yoga: 735d941f871ac6c4853334c164c424e013a79a17
 
-PODFILE CHECKSUM: 52c88c46720cdddb18e5a2fc0002a47b8af204d2
+PODFILE CHECKSUM: 4012a704aa01ccd47894ecf74a7c1c5f325d309c
 
 COCOAPODS: 1.2.0
