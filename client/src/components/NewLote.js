@@ -198,8 +198,3 @@ class NewLote extends Component {
 }
 
 export default NewLote;
-
-// <View>
-//         <Header headerText='New Lote' />
-//         <Text>New Lote Form Goes Here</Text>
-//       </View>

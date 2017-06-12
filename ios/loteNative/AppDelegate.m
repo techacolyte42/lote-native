@@ -8,6 +8,7 @@
  */
 
 #import "AppDelegate.h"
+#import "constants.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -21,7 +22,7 @@
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
-  [GMSServices provideAPIKey:@"GOOGLE_API_KEY_FOR_IOS"];
+  [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"loteNative"
