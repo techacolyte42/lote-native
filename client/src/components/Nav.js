@@ -10,6 +10,8 @@ import NewLote from './NewLote';
 import MyProfile from './MyProfile';
 import Random from './Random';
 import Map from './Map';
+import ChatHistory from './ChatHistory';
+import Lotes from './Lotes';
 
 var HomeScreen = connect((state) => { return state; }, actionCreators)(Home);
 var ContactsScreen = connect((state) => { return state; }, actionCreators)(Contacts);
@@ -17,6 +19,8 @@ var NewLoteScreen = connect((state) => { return state; }, actionCreators)(NewLot
 var MyProfileScreen = connect((state) => { return state; }, actionCreators)(MyProfile);
 var RandomScreen = connect((state) => { return state; }, actionCreators)(Random);
 var MapScreen = connect((state) => { return state; }, actionCreators)(Map);
+var ChatHistoryScreen = connect((state) => { return state; }, actionCreators)(ChatHistory);
+var LotesScreen = connect((state) => { return state; }, actionCreators)(Lotes);
 
 export const Stack = StackNavigator({
   NewLote: {
@@ -30,12 +34,22 @@ export const Stack = StackNavigator({
   }
 });
 
+export const chatStack = StackNavigator({
+  Contacts: {
+    screen: ContactsScreen,
+  },
+  ChatHistory: {
+    screen: ChatHistoryScreen,
+  }
+})
+
 const Nav = TabNavigator({
   Home: { screen: HomeScreen  },
-  Contacts: { screen: ContactsScreen },
+  Contacts: { screen: chatStack, 
+  },
   NewLote: { screen: Stack, 
     navigationOptions: {
-      tabBarLabel: 'NewLote',
+      tabBarLabel: 'New Lote',
     } 
   },
   MyProfile: { screen: MyProfileScreen },

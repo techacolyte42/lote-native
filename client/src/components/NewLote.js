@@ -7,6 +7,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
 import { Container, Content, List, ListItem, Thumbnail, Body, Item, Input, Form, Button, Label } from 'native-base';
 import MapView from 'react-native-maps';
+import config from '../../../config/config.js';
+
+const apiBaseUrl = config.API_BASE_URL;
 //import MapContainer from './MapContainer';
 
 const styles = StyleSheet.create({
@@ -37,7 +40,7 @@ class NewLote extends Component {
 
     this.getOptionList = this.getOptionList.bind(this);
     this.handleSubmitAndChangeScreen = this.handleSubmitAndChangeScreen.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     // this.placeSubmit = this.placeSubmit.bind(this);
     // this.placeSearch = this.placeSearch.bind(this);
     this.placeRef = this.placeRef.bind(this);
@@ -82,7 +85,33 @@ class NewLote extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post(`/api/profiles/${this.props.profile.id}/lotes`, {
+
+  //UNCOMMENT THIS BLOCK WHEN READY FOR SOCKET
+  //   let loteInfo = {
+  //     senderId: this.props.profile.id, 
+  //     receiverId: this.props.activeContact.id, 
+  //     loteType: 'lotes_text', 
+  //     radius: this.state.radius, 
+  //     message: this.props.activeMessage,
+  //     lock: this.state.lock,
+  //     longitude: this.props.lotecation.lng || this.props.userLocation.lng,
+  //     latitude: this.props.lotecation.lat || this.props.userLocation.lat
+  //   }
+
+  //   socket.emit('send message', loteInfo, (err, msg) => {
+  //     if (err) {
+  //       console.log(err); 
+  //     } else {
+  //       this.props.setActiveMessage(''); 
+  //       //this.props.history.push('/lotes'); 
+  //     }
+  //   });
+  // }
+
+
+  //AXIOS.POST TO END OF THE METHOD IS FOR OLD POST REQUEST,
+  //DELETE WHEN ADDING SOCKET FEATURE 
+    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/lotes`, {
       senderId: this.props.profile.id,
       receiverId: this.props.activeContact.id,
       loteType: 'lotes_text',
@@ -93,6 +122,7 @@ class NewLote extends Component {
       latitude: this.props.lotecation.lat || this.props.userLocation.lat
     })
     .then((res) => {
+      console.log('did everything work?')
       this.props.setActiveMessage('');
       this.props.getLotes(this.props.profile.id);
       this.props.history.push('/lotes');
@@ -101,6 +131,7 @@ class NewLote extends Component {
       console.log (err);
     });
   }
+  //END
 
   placeRef(ref) {
     this.searchBox = ref ? ref.input : null;

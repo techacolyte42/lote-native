@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { TextInput, View, Text, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Container, Content, List, ListItem, Thumbnail, Body, Right, Left, Item, Input, Form, Button } from 'native-base';
 import { Field, reduxForm } from 'redux-form';
 import { Header } from './common';
@@ -23,14 +23,26 @@ class Contacts extends React.Component {
       email: ''
 
   }
-
+    this.chatHistory = this.chatHistory.bind(this);
     this.handleClickContact = this.handleClickContact.bind(this);
     this.handleSubmitContact = this.handleSubmitContact.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handleClickAndChatNav = this.handleClickAndChatNav.bind(this);
+  }
+
+  chatHistory() {
+    console.log('clicked in chat history')
+    return this.props.navigation.navigate('ChatHistory');
   }
 
   handleClickContact(receiver) {
     this.props.setActiveContact(receiver);
+  }
+
+  handleClickAndChatNav(e) {
+    console.log('clicked?????')
+    this.handleClickContact(e);
+    this.chatHistory();
   }
 
   handleEmailInput(e) {
@@ -40,9 +52,7 @@ class Contacts extends React.Component {
   }
 
   handleSubmitContact (e) {
-    console.log('this has been clicked')
-    e.preventDefault();
-    console.log('expect my email', this.props.profile.id)
+  e.preventDefault();
    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
     // axios.post(`http://localhost:3000/api/profiles/${this.props.profile.id}/contacts`, {
       senderId: this.props.profile.id,
@@ -50,7 +60,6 @@ class Contacts extends React.Component {
     })
     .then((res) => {
       this.props.getContacts(this.props.profile.id);
-      console.log (res);
     })
     .catch((err) => {
       console.log (err);
@@ -61,6 +70,7 @@ class Contacts extends React.Component {
   }
 
   render() {
+
     return (
       <Container>
 
@@ -69,15 +79,15 @@ class Contacts extends React.Component {
         <Content>
           <List>
             { this.props.contacts.map( (contact)=>{
-              return (<ListItem key={ contact.receiver.id } onPress={ () => this.handleClickContact(contact.receiver) }>
-                <Text>{ contact.receiver.email }</Text>
+              return (<ListItem key={ contact.receiver.id } onPress={ () => this.handleClickAndChatNav(contact.receiver) }>
+                <Text >{ contact.receiver.email }</Text>
               </ListItem>)
             }) }
           </List>
         </Content>
           
         <Item regular>
-          <Input ref="email" onChangeText={ this.handleEmailInput } value={this.state.email} placeholder="Enter a contact"/>
+          <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter a contact"/>
         </Item>
 
         <View><Text></Text></View>
