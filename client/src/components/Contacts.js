@@ -8,10 +8,8 @@ import { Header } from './common';
 import config from '../../../config/config.js';
 
 const apiBaseUrl = config.API_BASE_URL;
-//header is not showing up
 
 class Contacts extends React.Component {
-
   static navigationOptions = {
     tabBarLabel: 'Contacts',
     tabBarIcon: () => (<Icon size={24} color="white" name="contacts" />)
@@ -22,27 +20,15 @@ class Contacts extends React.Component {
     this.state = {
       email: ''
     }
-    
-    this.chatHistory = this.chatHistory.bind(this);
+
     this.handleClickContact = this.handleClickContact.bind(this);
     this.handleSubmitContact = this.handleSubmitContact.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
-    this.handleClickAndChatNav = this.handleClickAndChatNav.bind(this);
-  }
-
-  chatHistory() {
-    console.log('clicked in chat history')
-    return this.props.navigation.navigate('ChatHistory');
   }
 
   handleClickContact(receiver) {
     this.props.setActiveContact(receiver);
-  }
-
-  handleClickAndChatNav(e) {
-    console.log('clicked?????')
-    this.handleClickContact(e);
-    this.chatHistory();
+    return this.props.navigation.navigate('Lotes');
   }
 
   handleEmailInput(e) {
@@ -52,14 +38,8 @@ class Contacts extends React.Component {
   }
 
   handleSubmitContact (e) {
-<<<<<<< HEAD
-  e.preventDefault();
-   axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
-    // axios.post(`http://localhost:3000/api/profiles/${this.props.profile.id}/contacts`, {
-=======
     e.preventDefault();
     axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
->>>>>>> TabNavigator updates
       senderId: this.props.profile.id,
       receiverEmail: this.state.email
     })
@@ -74,19 +54,11 @@ class Contacts extends React.Component {
   }
 
   render() {
-
     return (
       <Container>
         <Header headerText='Contacts' />
         <Content>
           <List>
-<<<<<<< HEAD
-            { this.props.contacts.map( (contact)=>{
-              return (<ListItem key={ contact.receiver.id } onPress={ () => this.handleClickAndChatNav(contact.receiver) }>
-                <Text >{ contact.receiver.email }</Text>
-              </ListItem>)
-            }) }
-=======
             { this.props.contacts.map((contact) => {
               return (
                 <ListItem key={ contact.receiver.id } onPress={ () => this.handleClickContact(contact.receiver) }>
@@ -94,7 +66,6 @@ class Contacts extends React.Component {
                 </ListItem>
               )
             })}
->>>>>>> TabNavigator updates
           </List>
         </Content>          
         <Item regular>

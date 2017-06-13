@@ -72,7 +72,6 @@ class NewLote extends Component {
   handleLockToggle(checked) {
     console.log('value of checkbox', checked);
     this.setState({ lock: checked });
-    
   }
 
   handleRadiusChange(value) {
@@ -161,71 +160,73 @@ class NewLote extends Component {
   render() {
     const {lotecation, userLocation} = this.props;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Select width={250} ref="SELECT1" defaultValue="Select a contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
-          { this.props.contacts.map( (contact)=>{
-                return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
-                  { contact.receiver.email }</Option>
-                )
-              })
-          }
-        </Select>
+      <Container>
+        <Header headerText='New Lote' />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Select width={250} ref="SELECT1" defaultValue="Select a contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
+            { this.props.contacts.map( (contact)=>{
+                  return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
+                    { contact.receiver.email }</Option>
+                  )
+                })
+            }
+          </Select>
 
-        <OptionList ref="OPTIONLIST" />  
+          <OptionList ref="OPTIONLIST" />  
 
-        <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
-          <Input placeholder='Enter a message' />
-        </Item>  
+          <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
+            <Input placeholder='Enter a message' />
+          </Item>  
 
-        <Item underline>
-          <Input id="locationSearch" ref={ this.placeRef } hintText="Location search" placeholder='Location Search' />
-        </Item>  
+          <Item underline>
+            <Input id="locationSearch" ref={ this.placeRef } hintText="Location search" placeholder='Location Search' />
+          </Item>  
 
-        <View><Text></Text></View>
-        <View><Text>Radius:</Text></View>
+          <View><Text></Text></View>
+          <View><Text>Radius:</Text></View>
 
-        <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }  defaultValue="Select radius ...">
-          <Option key={ 20 }>20 meters</Option>
-          <Option key={ 100 }>100 meters</Option>
-          <Option key={ 500 }>500 meters</Option>
-          <Option key={ 2500 }>2500 meters</Option>
-          <Option key={ 10000 }>10000 meters</Option>
-        </Select>
+          <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }  defaultValue="Select radius ...">
+            <Option key={ 20 }>20 meters</Option>
+            <Option key={ 100 }>100 meters</Option>
+            <Option key={ 500 }>500 meters</Option>
+            <Option key={ 2500 }>2500 meters</Option>
+            <Option key={ 10000 }>10000 meters</Option>
+          </Select>
 
-        <OptionList ref="OPTIONLIST" />  
+          <OptionList ref="OPTIONLIST" />  
 
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
-        <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
+          <View><Text></Text></View>
 
+          <CheckBox
+            label="location-lock"
+            checked={ this.state.lock }
+            onChange={ (checked) => this.handleLockToggle(!checked) }
+          />  
 
-        <CheckBox
-          label="location-lock"
-          checked={ this.state.lock }
-          onChange={ (checked) => this.handleLockToggle(!checked) }
-        />  
+          <View><Text></Text></View>
 
-        <View><Text></Text></View>
-
-        <View style={{ alignItems: 'center' }}>
-          <Button primary onPress={ this.handleSubmitAndChangeScreen }>
-            <Text>Submit</Text>
-          </Button>
-        </View>  
-      </View>
+          <View style={{ alignItems: 'center' }}>
+            <Button primary onPress={ this.handleSubmitAndChangeScreen }>
+              <Text>Submit</Text>
+            </Button>
+          </View>  
+        </View>
+      </Container>
     )
   }
 }
