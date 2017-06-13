@@ -10,7 +10,6 @@ import MapView from 'react-native-maps';
 import config from '../../../config/config.js';
 
 const apiBaseUrl = config.API_BASE_URL;
-//import MapContainer from './MapContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,17 +39,11 @@ class NewLote extends Component {
     };
 
     this.getOptionList = this.getOptionList.bind(this);
-    this.handleSubmitAndChangeScreen = this.handleSubmitAndChangeScreen.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.placeRef = this.placeRef.bind(this);
     this.handleLockToggle = this.handleLockToggle.bind(this);
     this.handleRecipientChange = this.handleRecipientChange.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
-    this.onLearnMore = this.onLearnMore.bind(this);
-  }
-
-  onLearnMore() {
-    return this.props.navigation.navigate('Map');
   }
 
   componentWillMount() {
@@ -73,11 +66,6 @@ class NewLote extends Component {
 
   handleRadiusChange(value) {
     this.setState({ radius: value });
-  }
-
-  handleSubmitAndChangeScreen(e) {
-    this.onLearnMore();
-    this.handleSubmit(e);
   }
 
   handleSubmit(event) {
@@ -119,7 +107,6 @@ class NewLote extends Component {
       latitude: this.props.lotecation.lat || this.props.userLocation.lat
     })
     .then((res) => {
-      console.log('did everything work?')
       this.props.setActiveMessage('');
       this.props.getLotes(this.props.profile.id);
       this.props.history.push('/lotes');
@@ -127,6 +114,8 @@ class NewLote extends Component {
     .catch((err) => {
       console.log (err);
     });
+
+    return this.props.navigation.navigate('Map');
   }
   //END
 
@@ -145,13 +134,14 @@ class NewLote extends Component {
       <Container>
         <Header headerText='New Lote' { ...this.props } />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Select width={250} ref="SELECT1" defaultValue="Select a contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
+          <Select width={250} ref="SELECT1" defaultValue="Select contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
             { this.props.contacts.map((contact) => {
-                  return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
-                    { contact.receiver.email }</Option>
-                  )
-                })
-            }
+              return (
+                <Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
+                  { contact.receiver.email }
+                </Option>
+              )
+            })}
           </Select>
 
           <OptionList ref="OPTIONLIST" />  
@@ -177,22 +167,10 @@ class NewLote extends Component {
 
           <OptionList ref="OPTIONLIST" />  
 
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
-          <View><Text></Text></View>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{width: 400, height: 50, backgroundColor: 'white'}}/>
+          </View>
+     
 
           <CheckBox
             label="Location-Locked"
@@ -203,7 +181,7 @@ class NewLote extends Component {
           <View><Text></Text></View>
 
           <View style={{ alignItems: 'center' }}>
-            <Button primary onPress={ this.handleSubmitAndChangeScreen }>
+            <Button primary onPress={ this.handleSubmit }>
               <Text>Submit</Text>
             </Button>
           </View>  
