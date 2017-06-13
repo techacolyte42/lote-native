@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableHighlight, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
 import config from '../../../config/config.js';
@@ -8,7 +8,7 @@ class Home extends React.Component {
   
   static navigationOptions = {
     tabBarLabel: 'Home',
-    tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)
+    tabBarIcon: () => (<Icon size={24} color="white" name="home" />)
   }
 
   componentWillMount() {
@@ -43,16 +43,16 @@ class Home extends React.Component {
 
   render() {
     return (
-      <ScrollView>
+      <View>
         <Header headerText='Home' />
-        <Text>Lote, location-based notes</Text>
+        <Text style={{ marginTop: 20 }}>Lote, location-based notes</Text>
         <Text style={{ marginTop: 20 }}>
           Recipe Count: { this.props.recipes }
         </Text>
         <TouchableHighlight onPress= {() => { this.props.addRecipe() }}>
           <Text>Add recipe</Text>
         </TouchableHighlight>
-      </ScrollView>
+      </View>
     );
   }
 }
