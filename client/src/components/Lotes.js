@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chat: {
-    // ...StyleSheet.absoluteFillObject,
     display: 'flex',
   },
   senderStyle: {
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     padding: 10,
     position: 'relative',
-    // margin: 5 45 5 20,
     alignItems: 'flex-end',
   },
   receiverStyle: {
@@ -27,10 +25,6 @@ const styles = StyleSheet.create({
     padding: 10,
     position: 'relative',
   },
-  loteMessage: {
-  },
-  loteTimeStamp: {
-  }
 });
 
 class Lotes extends Component {  
@@ -61,15 +55,15 @@ class Lotes extends Component {
                 if (lote.sender_id === this.props.profile.id) {
                   return (
                     <View style={ styles.senderStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
-                      <View style={ styles.loteMessage }><Text>{ lote.lote.message }</Text></View>
-                      <View style={ styles.loteTimeStamp }><Text>sent { Moment(lote.created_at).fromNow() }</Text></View>
+                      <Text>{ lote.lote.message }</Text>
+                      <Text>sent { Moment(lote.created_at).fromNow() }</Text>
                     </View>
                   );
                 } else if (lote.lotesReceived[0].receiver_id === this.props.profile.id) {
                   return (
                     <View style={ styles.receiverStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
-                      <View style={ styles.senderStyle }><Text>{ lote.lote.message }</Text></View>
-                      <View style={ styles.loteTimeStamp }><Text>sent { Moment(lote.created_at).fromNow() }</Text></View>                        
+                      <Text>{ lote.lote.message }</Text>
+                      <Text>sent { Moment(lote.created_at).fromNow() }</Text>                       
                     </View>
                   );
                 }
@@ -80,8 +74,8 @@ class Lotes extends Component {
                 lotesDisplayCount++;
                 return (
                   <View style={ styles.senderStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
-                    <View style={ styles.loteMessage }><Text>{ lote.lote.message }</Text></View>
-                    <View style={ styles.loteTimeStamp }><Text>sent { Moment(lote.created_at).fromNow() }</Text></View>
+                    <Text>{ lote.lote.message }</Text>
+                    <Text >sent { Moment(lote.created_at).fromNow() }</Text>
                   </View>
                 );
               }
