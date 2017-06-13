@@ -13,8 +13,8 @@ class Random extends React.Component {
   render() {
     return (
       <View>
-        <Header headerText='Random' />
-        <Text>{ this.props.profile.display }</Text>
+        <Header headerText='Random' { ...this.props } />
+        <Text style={{ marginTop: 10 }}>{ this.props.profile.display }</Text>
         <GeolocationExample />
       </View>
     );

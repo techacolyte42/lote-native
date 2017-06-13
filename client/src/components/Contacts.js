@@ -56,20 +56,20 @@ class Contacts extends React.Component {
   render() {
     return (
       <Container>
-        <Header headerText='Contacts' />
+        <Header headerText='Contacts' { ...this.props } />
         <Content>
           <List>
             { this.props.contacts.map((contact) => {
               return (
                 <ListItem key={ contact.receiver.id } onPress={ () => this.handleClickContact(contact.receiver) }>
-                  <Text>{ contact.receiver.email }</Text>
+                  <Text>{ contact.receiver.display ? contact.receiver.display : contact.receiver.email }</Text>
                 </ListItem>
               )
             })}
           </List>
         </Content>          
         <Item regular>
-          <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter a contact"/>
+          <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter email address"/>
         </Item>
         <Button block primary onPress={ this.handleSubmitContact }>
           <Text>Submit</Text>
