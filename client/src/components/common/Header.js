@@ -1,23 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-// make a component
-const Header = (props) => {
-  const { viewStyle, textStyle } = styles;
-
-  return (
-    <View style={viewStyle}>
-      <Text style={textStyle}>{props.headerText}</Text>
-    </View>
-  );
+class Header extends React.Component {
+  render() {
+    const { goBack } = this.props.navigation;
+    return (
+      <View style={ styles.navBar }>
+        <View style={ styles.leftContainer }>
+          { this.props.backButton && <Button title="<" onPress={ () => goBack() } /> }
+        </View>
+        <Text style={ [styles.text, { fontSize: 20 }] }>
+          { this.props.headerText }
+        </Text>
+        <View style={ styles.rightContainer }>
+        </View>
+      </View>
+    );
+  }
 }
 
-const styles = {
-  viewStyle: {
-    backgroundColor: '#F8F8F8',
-    justifyContent: 'center',
-    alignItems: 'center',
+const styles = StyleSheet.create({
+  navBar: {
     height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#F8F8F8',
     paddingTop: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -25,11 +33,17 @@ const styles = {
     elevation: 2,
     position: 'relative',
   },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+});
 
-  textStyle: {
-    fontSize: 20
-  }
-}
-
-// make the component available to other parts of the app
 export { Header };

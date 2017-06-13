@@ -38,14 +38,14 @@ class Home extends React.Component {
           console.log ('were here');
           console.log (err);
         });
-    }); 
+    });
   }
 
   render() {
     return (
       <View>
-        <Header headerText='Home' />
-        <Text style={{ marginTop: 20 }}>Lote, location-based notes</Text>
+        <Header headerText='Home' { ...this.props } />
+        <Text style={{ marginTop: 10 }}>Lote, location-based notes</Text>
         <Text style={{ marginTop: 20 }}>
           Recipe Count: { this.props.recipes }
         </Text>

@@ -42,14 +42,11 @@ class NewLote extends Component {
     this.getOptionList = this.getOptionList.bind(this);
     this.handleSubmitAndChangeScreen = this.handleSubmitAndChangeScreen.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.placeSubmit = this.placeSubmit.bind(this);
-    // this.placeSearch = this.placeSearch.bind(this);
     this.placeRef = this.placeRef.bind(this);
     this.handleLockToggle = this.handleLockToggle.bind(this);
     this.handleRecipientChange = this.handleRecipientChange.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
     this.onLearnMore = this.onLearnMore.bind(this);
-
   }
 
   onLearnMore() {
@@ -142,29 +139,14 @@ class NewLote extends Component {
   //   console.log(event);
   // }
 
-
-/*
-      <View style={styles.container}>
-        <MapView provider="google"
-          style={styles.map}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}>
-        </MapView>
-      </View>
-*/
-
   render() {
     const {lotecation, userLocation} = this.props;
     return (
       <Container>
-        <Header headerText='New Lote' />
+        <Header headerText='New Lote' { ...this.props } />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Select width={250} ref="SELECT1" defaultValue="Select a contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
-            { this.props.contacts.map( (contact)=>{
+            { this.props.contacts.map((contact) => {
                   return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
                     { contact.receiver.email }</Option>
                   )
@@ -179,13 +161,13 @@ class NewLote extends Component {
           </Item>  
 
           <Item underline>
-            <Input id="locationSearch" ref={ this.placeRef } hintText="Location search" placeholder='Location Search' />
+            <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
           </Item>  
 
           <View><Text></Text></View>
           <View><Text>Radius:</Text></View>
 
-          <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }  defaultValue="Select radius ...">
+          <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }>
             <Option key={ 20 }>20 meters</Option>
             <Option key={ 100 }>100 meters</Option>
             <Option key={ 500 }>500 meters</Option>
@@ -213,7 +195,7 @@ class NewLote extends Component {
           <View><Text></Text></View>
 
           <CheckBox
-            label="location-lock"
+            label="Location-Locked"
             checked={ this.state.lock }
             onChange={ (checked) => this.handleLockToggle(!checked) }
           />  
