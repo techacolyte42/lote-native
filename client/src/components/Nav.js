@@ -34,7 +34,7 @@ export const NewLoteStack = StackNavigator({
   mode: 'card',
   cardStyle: { backgroundColor: 'white' },
   tintColor: '#ffffff',
-  headerMode: 'none'
+  headerMode: 'none',
 });
 
 export const ContactsStack = StackNavigator({
