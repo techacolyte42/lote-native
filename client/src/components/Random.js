@@ -7,7 +7,7 @@ import GeolocationExample from './GeolocationExample';
 class Random extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Random',
-    tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)
+    tabBarIcon: () => (<Icon size={24} color="white" name="info-outline" />)
   }
 
   render() {

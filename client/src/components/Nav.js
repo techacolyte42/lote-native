@@ -26,12 +26,17 @@ export const Stack = StackNavigator({
   NewLote: {
     screen: NewLoteScreen,
     navigationOptions: {
-      tite: 'New Lote'
+      tite: 'New Lote',
     }
   },
   Map: {
     screen: MapScreen,
   }
+}, {
+  mode: 'card',
+  cardStyle: { backgroundColor: 'white' },
+  tintColor: '#ffffff',
+  headerMode: 'screen'
 });
 
 export const chatStack = StackNavigator({
@@ -66,14 +71,14 @@ const Nav = TabNavigator({
           barBackgroundColor: '#37474F'
         },
         Contacts: {
-          barBackgroundColor: '#00796B'
+          barBackgroundColor: '#37474F'
         },
         NewLote: {
           barBackgroundColor: '#37474F',
           // activeIcon: <Icon size={24} color="pink" name="tv" />
         },
         MyProfile: {
-          barBackgroundColor: '#00796B',
+          barBackgroundColor: '#37474F'
           // activeLabelColor: '#212121',
           // activeIcon: <Icon size={24} color="#212121" name="tv" />
         },

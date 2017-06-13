@@ -6,7 +6,7 @@ import { Header } from './common';
 class MyProfile extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'My Profile',
-    tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)
+    tabBarIcon: () => (<Icon size={24} color="white" name="face" />)
   }
 
   render() {

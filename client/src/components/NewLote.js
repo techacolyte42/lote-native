@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
 });
 
 class NewLote extends Component {
-  static navigationOptions = {
+   static navigationOptions = {
     tabBarLabel: 'New Lote',
-    tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)
+    tabBarIcon: () => (<Icon size={24} color="white" name="add-location" />)
   }
+
   constructor(props) {
     super(props);
     
@@ -166,7 +167,8 @@ class NewLote extends Component {
                 return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
                   { contact.receiver.email }</Option>
                 )
-              }) }
+              })
+          }
         </Select>
 
         <OptionList ref="OPTIONLIST" />  
@@ -182,7 +184,7 @@ class NewLote extends Component {
         <View><Text></Text></View>
         <View><Text>Radius:</Text></View>
 
-        <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }  defaultValue="Select a Radius ...">
+        <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }  defaultValue="Select radius ...">
           <Option key={ 20 }>20 meters</Option>
           <Option key={ 100 }>100 meters</Option>
           <Option key={ 500 }>500 meters</Option>

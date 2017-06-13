@@ -14,15 +14,15 @@ class Contacts extends React.Component {
 
   static navigationOptions = {
     tabBarLabel: 'Contacts',
-    tabBarIcon: () => (<Icon size={24} color="white" name="tv" />)
+    tabBarIcon: () => (<Icon size={24} color="white" name="contacts" />)
   }
 
   constructor (props) {
     super(props);
     this.state = {
       email: ''
-
-  }
+    }
+    
     this.chatHistory = this.chatHistory.bind(this);
     this.handleClickContact = this.handleClickContact.bind(this);
     this.handleSubmitContact = this.handleSubmitContact.bind(this);
@@ -52,9 +52,14 @@ class Contacts extends React.Component {
   }
 
   handleSubmitContact (e) {
+<<<<<<< HEAD
   e.preventDefault();
    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
     // axios.post(`http://localhost:3000/api/profiles/${this.props.profile.id}/contacts`, {
+=======
+    e.preventDefault();
+    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
+>>>>>>> TabNavigator updates
       senderId: this.props.profile.id,
       receiverEmail: this.state.email
     })
@@ -65,39 +70,40 @@ class Contacts extends React.Component {
       console.log (err);
     });
 
-    this.setState({email:''})
-
+    this.setState({email: ''})
   }
 
   render() {
 
     return (
       <Container>
-
-          <Header headerText='Contacts' />
-
+        <Header headerText='Contacts' />
         <Content>
           <List>
+<<<<<<< HEAD
             { this.props.contacts.map( (contact)=>{
               return (<ListItem key={ contact.receiver.id } onPress={ () => this.handleClickAndChatNav(contact.receiver) }>
                 <Text >{ contact.receiver.email }</Text>
               </ListItem>)
             }) }
+=======
+            { this.props.contacts.map((contact) => {
+              return (
+                <ListItem key={ contact.receiver.id } onPress={ () => this.handleClickContact(contact.receiver) }>
+                  <Text>{ contact.receiver.email }</Text>
+                </ListItem>
+              )
+            })}
+>>>>>>> TabNavigator updates
           </List>
-        </Content>
-          
+        </Content>          
         <Item regular>
           <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter a contact"/>
         </Item>
-
-        <View><Text></Text></View>
-
         <Button block primary onPress={ this.handleSubmitContact }>
           <Text>Submit</Text>
         </Button>
-      
       </Container>
-      
     );
  }
 }
