@@ -52,7 +52,7 @@ class Contacts extends React.Component {
   }
 
   handleSubmitContact (e) {
-    e.preventDefault();
+  e.preventDefault();
    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/contacts`, {
     // axios.post(`http://localhost:3000/api/profiles/${this.props.profile.id}/contacts`, {
       senderId: this.props.profile.id,
@@ -60,7 +60,6 @@ class Contacts extends React.Component {
     })
     .then((res) => {
       this.props.getContacts(this.props.profile.id);
-      console.log (res);
     })
     .catch((err) => {
       console.log (err);
