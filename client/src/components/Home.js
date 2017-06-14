@@ -66,6 +66,7 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <MapContainer style={styles.container}/>
         <Header headerText='Home' { ...this.props } />
         {/*<Text style={{ marginTop: 10 }}>Lote, location-based notes</Text>
         <Text style={{ marginTop: 20 }}>
@@ -76,16 +77,7 @@ class Home extends React.Component {
         <MapContainer />
         <View style={styles.container}>
         </View>
-        </TouchableHighlight>
-          <MapView provider='google'
-            style={styles.map}
-            region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121}}
-          ></MapView>*/}
-          <MapContainer styles={styles.container}/>
+        </TouchableHighlight>*/}
       </View>
     );
   }
