@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { TextInput, View, Text, StyleSheet, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import Dropdown, { Select, Option, OptionList } from 'react-native-selectme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -11,26 +11,8 @@ import config from '../../../config/config.js';
 
 const apiBaseUrl = config.API_BASE_URL;
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    //height: 100%,
-    //width: 100%,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
-
 
 class NewLote extends React.Component {
-
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
 
   static navigationOptions = {
     tabBarLabel: 'New Lote',

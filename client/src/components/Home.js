@@ -4,6 +4,28 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
 import config from '../../../config/config.js';
 
+
+/* ------------ MAP STUFF -------------------------------*/
+import MapView from 'react-native-maps';
+import {StyleSheet} from 'react-native';
+import MapContainer from './MapContainer';
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    //height: 100%,
+    //width: 100%,
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
+
+
+/*-----------END MAP STUFF--------------------------------*/
+
 class Home extends React.Component {
   
   static navigationOptions = {
@@ -43,15 +65,27 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Header headerText='Home' { ...this.props } />
-        <Text style={{ marginTop: 10 }}>Lote, location-based notes</Text>
+        {/*<Text style={{ marginTop: 10 }}>Lote, location-based notes</Text>
         <Text style={{ marginTop: 20 }}>
           Recipe Count: { this.props.recipes }
         </Text>
         <TouchableHighlight onPress= {() => { this.props.addRecipe() }}>
           <Text>Add recipe</Text>
+        <MapContainer />
+        <View style={styles.container}>
+        </View>
         </TouchableHighlight>
+          <MapView provider='google'
+            style={styles.map}
+            region={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0121}}
+          ></MapView>*/}
+          <MapContainer styles={styles.container}/>
       </View>
     );
   }
