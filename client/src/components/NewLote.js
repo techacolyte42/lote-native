@@ -5,29 +5,16 @@ import CheckBox from 'react-native-checkbox';
 import Dropdown, { Select, Option, OptionList } from 'react-native-selectme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
-import { Container, Content, List, ListItem, Thumbnail, Body, Item, Input, Form, Button, Label } from 'native-base';
+import { Container, Content, List, ListItem, Thumbnail, Body, Item, Input, Form, Button, Label, Picker } from 'native-base';
 import MapView from 'react-native-maps';
 import config from '../../../config/config.js';
 
 const apiBaseUrl = config.API_BASE_URL;
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    //height: 100%,
-    //width: 100%,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
-
 class NewLote extends Component {
    static navigationOptions = {
     tabBarLabel: 'New Lote',
-    tabBarIcon: () => (<Icon size={24} color="white" name="add-location" />)
+    tabBarIcon: () => (<Icon size={ 24 } color="white" name="add-location" />)
   }
 
   constructor(props) {
@@ -35,34 +22,38 @@ class NewLote extends Component {
     
     this.state= {
       lock: false,
-      radius: 90
+      radius: 90,
+      selectedItem: undefined,
+      recipientIndex: 0,
+      radius: 20,
+      results: {
+        items: []
+      }
     };
 
-    this.getOptionList = this.getOptionList.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.placeRef = this.placeRef.bind(this);
-    this.handleLockToggle = this.handleLockToggle.bind(this);
     this.handleRecipientChange = this.handleRecipientChange.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
-
+    this.handleLockToggle = this.handleLockToggle.bind(this);
     this.onLearnMore = this.onLearnMore.bind(this);
-  }
-
-  onLearnMore() {
-    return this.props.navigation.navigate('Map');
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.placeRef = this.placeRef.bind(this);
   }
 
   componentWillMount() {
     this.props.setActivePage('New Lote');
   }
 
-  getOptionList() {
-    return this.refs['OPTIONLIST'];
+  handleRecipientChange (recipientIndex) {
+    this.props.setActiveContact(this.props.contacts[recipientIndex]);
+    this.setState({
+      recipientIndex: recipientIndex
+    });
   }
 
-  handleRecipientChange (event, index, receiver) {
-    console.log('receipient change', event)
-    this.props.setActiveContact(event);
+  handleRadiusChange (radius) {
+    this.setState({
+      radius: radius
+    });
   }
 
   handleLockToggle(checked) {
@@ -70,8 +61,8 @@ class NewLote extends Component {
     this.setState({ lock: checked });
   }
 
-  handleRadiusChange(value) {
-    this.setState({ radius: value });
+  onLearnMore() {
+    return this.props.navigation.navigate('Map');
   }
 
   handleSubmit(event) {
@@ -123,7 +114,6 @@ class NewLote extends Component {
 
     return this.props.navigation.navigate('Map');
   }
-  //END
 
   placeRef(ref) {
     this.searchBox = ref ? ref.input : null;
@@ -139,67 +129,50 @@ class NewLote extends Component {
     return (
       <Container>
         <Header headerText='New Lote' { ...this.props } />
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Select width={250} ref="SELECT1" defaultValue="select contact" optionListRef={ this.getOptionList } onSelect={ this.handleRecipientChange }>
-            { this.props.contacts.map((contact) => {
-                  return (<Option key={ contact.receiver.id } onPress={ () => this.handleRecipientChange(contact.receiver) }>
-                    { contact.receiver.email }</Option>
-                  )
-                })
-            }
-          </Select>
-
-          <OptionList ref="OPTIONLIST" />  
-
+        <Content style={{ marginTop: 10 }}>
+          <Text>Select Recipient:</Text>
+          <Picker
+            supportedOrientations={ ['portrait','landscape'] }
+            iosHeader="Recipient"
+            mode="dropdown"
+            selectedValue={ this.state.recipientIndex }
+            onValueChange={ this.handleRecipientChange }>
+            { this.props.contacts.map((contact, index) => {
+              return (
+                <Picker.Item label={ contact.receiver.display ? contact.receiver.display : contact.receiver.email } key={ contact.receiver.id } value={ index } />
+              )
+            })}
+          </Picker>
           <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
             <Input placeholder='Enter a message' />
           </Item>  
-
           <Item underline>
             <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
-          </Item>  
-
-          <View><Text></Text></View>
-          <View><Text>Radius:</Text></View>
-
-          <Select width={250} ref="SELECT1" optionListRef={ this.getOptionList } onSelect={ this.handleRadiusChange }>
-            <Option key={ 20 }>20 meters</Option>
-            <Option key={ 100 }>100 meters</Option>
-            <Option key={ 500 }>500 meters</Option>
-            <Option key={ 2500 }>2500 meters</Option>
-            <Option key={ 10000 }>10000 meters</Option>
-          </Select>
-
-          <OptionList ref="OPTIONLIST" />  
-
-           <View><Text></Text></View>   
-           <View><Text></Text></View>    
-           <View><Text></Text></View>    
-           <View><Text></Text></View>    
-           <View><Text></Text></View>    
-           <View><Text></Text></View>    
-           <View><Text></Text></View>    
-           <View><Text></Text></View>
-           <View><Text></Text></View>    
-           <View><Text></Text></View>
-
-         
-     
-
+          </Item>
+          <Text>Select Radius:</Text>
+          <Picker
+            supportedOrientations={ ['portrait','landscape'] }
+            iosHeader="Select Radius"
+            mode="dropdown"
+            selectedValue={ this.state.radius }
+            onValueChange={ this.handleRadiusChange.bind(this) }>
+            <Picker.Item value={ 20 } label="20 meters" />
+            <Picker.Item value={ 100 } label="100 meters" />
+            <Picker.Item value={ 500 } label="500 meters" />
+            <Picker.Item value={ 2500 } label="2,500 meters" />
+            <Picker.Item value={ 10000 } label="10,000 meters" />
+          </Picker>
           <CheckBox
             label="Location-Locked"
             checked={ this.state.lock }
             onChange={ (checked) => this.handleLockToggle(!checked) }
-          />  
-
-          <View><Text></Text></View>
-
+          />
           <View style={{ alignItems: 'center' }}>
             <Button primary onPress={ this.handleSubmit }>
               <Text>Submit</Text>
             </Button>
           </View>  
-        </View>
+        </Content>
       </Container>
     )
   }
