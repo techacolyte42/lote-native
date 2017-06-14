@@ -17,10 +17,7 @@ const styles = StyleSheet.create({
     //width: 100%,
     justifyContent: 'flex-start',
     alignItems: 'center'
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
+  }
 });
 
 
@@ -44,11 +41,11 @@ class Home extends React.Component {
         return;
       }
       // Authentication worked!
-      console.log('Logged in with Auth0!');
-      console.log ('profile email', profile.email);
+      //console.log('Logged in with Auth0!');
+      //console.log ('profile email', profile.email);
       this.props.getProfileByEmail(profile.email)
         .then((profile) => {
-          console.log('RESULT', profile);
+          //console.log('RESULT', profile);
           this.props.setProfile(profile);
           var user = profile;
 
